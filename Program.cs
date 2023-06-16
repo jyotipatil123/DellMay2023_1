@@ -1,36 +1,17 @@
-﻿//// classes demo
+﻿//using System;
+//using ConsoleApp4;
 
-//using System;
-
-// class vehicle
+//namespace ConsoleApp3
 //{
-//    int vehicleid;
-//    string vehiclename;
-
-//    public void displayvehicledetails()
+//     class Program
 //    {
-//        vehicleid = 10;
-//        vehiclename = "jeep";
-//        Console.WriteLine("Vehicle id is :"+vehicleid);
-//        Console.WriteLine("Vehicle name is :" + vehiclename);
+//        static void Main(string[] args)
+//        {
+//            newclass obj = new newclass();
+//            obj.method1();
+
+
+//            Console.ReadLine();
+//        }
 //    }
 //}
-
-//class MyClass
-//{
-//    static void Main(string[] args)
-//    {
-//        vehicle obj= new vehicle();
-//        obj.displayvehicledetails();
-
-//        Console.ReadLine();
-//    }
-//}
-
-//// CLR 
-//// stack   LIFO compilation    value types 
-//// heap -- runtime --radom     reference types 
-//// value types :  int, char, double, float, uint, long, byte, bool....
-//// reference types : class, array, string, OBJECT 
-
-
