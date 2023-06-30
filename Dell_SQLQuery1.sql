@@ -275,6 +275,13 @@ select * from person
 
 2.  foreign key
 
+create table order1
+(
+  orderid int primary key,
+  quantity int, 
+  id int, 
+  foreign key(id) references person1(id)
+)
 
 3.  not null
 
@@ -288,9 +295,58 @@ create table person1
 
 insert into person1(id,name,city) values(11,'monica','')
 
-4.  check 
+4.  check constraint : 
+
+create table person2
+(
+   id int, 
+   name varchar(50),
+   age int,
+   check (age>=18)
+)
+
+insert into person2(id, name, age) values(10,'aaa',22)
+
+select * from person2
+
 5.  unique 
+by default PK is unique  ---no duplicate records 
+
+create table person4
+(
+  id int not null unique, 
+  name varchar(50),
+  city varchar(50),
+  foreign key(id) references person1(id)
+)
+
+insert into person3(id,name,city) values (100, 'kavita', 'delhi')
+
+create table person5
+(
+  id int unique, 
+  name varchar(50),
+  city varchar(50)
+)
+insert into person5(id,name,city) values(null,'aa','gujrat')
+
+select * from person5
+
+
+select * from person3
+
 6.  default 
+create table person6
+(
+   id int, 
+   name varchar(50),
+   city varchar(50) default 'Delhi'
+)
+
+insert into person6 values(100,'anita','Kanpur')
+insert into person6 values(100,'anita')
+
+select * from person6
 
 
 alter table -----
@@ -311,6 +367,10 @@ ALTER TABLE customer  ALTER COLUMN  custid int NOT NULL;
 
 -- add the column as primary key
 ALTER TABLE customer ADD PRIMARY KEY (custid);
+
+=================================================================
+
+clauses : asdfasdfasdfasdfasdasdasdasfdasfdasds
 
 
 
