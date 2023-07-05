@@ -232,4 +232,135 @@ where c.custid=p.id
 select * from customer c, product r inner join person p 
 on c.custid=r.productid and c.custid=p.id
 
-select * from product
+==========================================================
+
+Stored procedures : 
+
+alter proc procedure1
+as
+begin
+    select * from customer
+	select * from customer where custid >101
+end
+
+exec procedure1
+
+// create stored procedure for inserting a record in a table
+// create stored procedure for delete a record in a table
+// create stored procedure for update a record in a table
+
+create procedure customerinsertasbegin insert into customer (CustId,Name,City) values(5,'Shiv','Delhi');end
+-------------------------------
+create proc dell_procasbegin 	insert into Subjects values( 6, 'Java',4)	delete from Subjects where subjectid=3	update subjects set name='Dotnet' where subjectid=1end
+
+create procedure customerUpdateasbegin update customer set Name='Siva' where CustId=5;end
+
+=========================================================
+stored procedures with parameters ; 
+
+
+create proc  delproc
+(@id int)
+as
+begin
+   delete from customer where custid =@id
+end
+
+exec delproc 11
+
+select * from customer
+
+insertion and updation with parameters 
+=============================================================
+create proc customerinsertion(@id int,@name varchar(100),@city varchar(100))asbegin insert into customer (CustId,Name,City) values(@id,@name,@city);end===============================create procedure customerUpdation(@id int,@name varchar(100),@city varchar(100))asbegin update customer set Name=@name, City=@city where CustId=@id;end=====================================================create proc wheredemo(@id int)asbegin   select * from customer where custid=@idend========================================================create stored procedure for sorting records of customer tablein ascending ordercreate stored procedure for sorting records of customer tablein descending order===============================================================Create a stored procedure to store a table vehicle and add the columns vehicleid, vehiclename, vehicle_coloralter proc studentprocas begincreate table customer (customer_id int,customer_name varchar(50),customer_address varchar(50))endDDL  -- once ==============================================================SELECT name, database_id, create_date  
+FROM sys.databases; =================================================================sp_helptext delprocdrop proc delproc=====================================================================create proc generalprocasbegin   select getdate()   select month(getdate())endexec generalproc==========================================================create a view : CREATE VIEW CUSTOMERS_VIEW 
+AS 
+        SELECT custid, custname FROM  CUSTOMER
+
+------------------------------------------------------
+execute the view : 
+
+
+select * from CUSTOMERS_VIEW
+
+drop view CUSTOMERS_VIEW
+
+===============================================================
+create views : 
+   insert, delete , update ????
+
+Views with DDL   ?
+===============================================================
+
+CREATE VIEW CUSTOMERS_VIEW1 
+AS
+    SELECT custname, custcity FROM  CUSTOMER WHERE custid IS NOT NULL
+    WITH CHECK OPTION;
+
+
+select * from CUSTOMERS_VIEW1
+
+update CUSTOMERS_VIEW1 set custcity='Pune' where custname='anita'
+==============================================================
+create view vw_testASselect * from Subjects where Classid is not nullwith check option=======================================================insert into vw_test(subjectid, name, classid)values(9,'ORACLE',5)delete from vw_test where subjectid=9
+
+DROP VIEW CUSTOMERS_VIEW;
+
+========================================
+
+drop database
+drop table
+drop view
+drop stored procedure
+===============================================
+
+scalar valued functions : 
+
+select * from customer
+
+CREATE FUNCTION GetCustomer(@cid INT)  
+ RETURNS VARCHAR(50)  
+ AS  
+BEGIN  
+    RETURN (SELECT custname FROM customer WHERE custid=@cid)  
+END 
+
+print dbo.GetCustomer(101)
+
+select * from customer 
+=======================================================================
+Create function : where custid =102 and custname is "harshit".
+=================================================================
+
+select * from customer
+
+
+alter FUNCTION GetCustomerName(@ccity varchar(50))  
+ RETURNS VARCHAR(50)  
+ AS  
+BEGIN  
+    RETURN (SELECT custname FROM customer WHERE custcity=@ccity)  
+END 
+
+print dbo.GetCustomerName('Pune')
+=====================================================
+
+table valued functions : 
+
+alter FUNCTION GetAllCustomers(@pattern varchar(5))  
+RETURNS TABLE  
+AS  
+RETURN  
+    SELECT * FROM customer WHERE custcity like @pattern
+
+
+SELECT * FROM GetAllCustomers('P%') 
+=======================================================================
+create FUNCTION GetAllCustomers1()
+RETURNS TABLE  
+AS  
+RETURN  
+    SELECT * FROM customer
+
+
+select * from dbo.GetAllCustomers1()
